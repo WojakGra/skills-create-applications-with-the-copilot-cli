@@ -1,6 +1,11 @@
 'use strict';
 
-const { calculate } = require('../calculator');
+const {
+  calculate,
+  modulo,
+  power,
+  squareRoot,
+} = require('../calculator');
 
 describe('calculator operations', () => {
   test('adds numbers (2 + 3 = 5)', () => {
@@ -39,5 +44,43 @@ describe('calculator operations', () => {
   test('throws on invalid operands', () => {
     expect(() => calculate(Number.NaN, '+', 2)).toThrow('Operands must be valid numbers.');
     expect(() => calculate(2, '+', Number.POSITIVE_INFINITY)).toThrow('Operands must be valid numbers.');
+  });
+});
+
+describe('extended calculator functions', () => {
+  test('computes modulo (5 % 2 = 1)', () => {
+    expect(modulo(5, 2)).toBe(1);
+  });
+
+  test('computes modulo (10 % 3 = 1)', () => {
+    expect(modulo(10, 3)).toBe(1);
+  });
+
+  test('throws on modulo by zero', () => {
+    expect(() => modulo(10, 0)).toThrow('Cannot divide by zero.');
+  });
+
+  test('computes power (2 ^ 3 = 8)', () => {
+    expect(power(2, 3)).toBe(8);
+  });
+
+  test('computes power (2 ^ 5 = 32)', () => {
+    expect(power(2, 5)).toBe(32);
+  });
+
+  test('computes power with negative exponent (2 ^ -2 = 0.25)', () => {
+    expect(power(2, -2)).toBe(0.25);
+  });
+
+  test('computes square root (sqrt(16) = 4)', () => {
+    expect(squareRoot(16)).toBe(4);
+  });
+
+  test('computes square root (sqrt(81) = 9)', () => {
+    expect(squareRoot(81)).toBe(9);
+  });
+
+  test('throws on square root of negative numbers', () => {
+    expect(() => squareRoot(-4)).toThrow('Cannot take the square root of a negative number.');
   });
 });

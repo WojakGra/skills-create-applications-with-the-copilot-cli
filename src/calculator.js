@@ -27,4 +27,42 @@ function calculate(left, operator, right) {
   return operation(left, right);
 }
 
-module.exports = { calculate, supportedOperators };
+function modulo(a, b) {
+  if (!Number.isFinite(a) || !Number.isFinite(b)) {
+    throw new Error('Operands must be valid numbers.');
+  }
+
+  if (b === 0) {
+    throw new Error('Cannot divide by zero.');
+  }
+
+  return a % b;
+}
+
+function power(base, exponent) {
+  if (!Number.isFinite(base) || !Number.isFinite(exponent)) {
+    throw new Error('Operands must be valid numbers.');
+  }
+
+  return Math.pow(base, exponent);
+}
+
+function squareRoot(n) {
+  if (!Number.isFinite(n)) {
+    throw new Error('Operands must be valid numbers.');
+  }
+
+  if (n < 0) {
+    throw new Error('Cannot take the square root of a negative number.');
+  }
+
+  return Math.sqrt(n);
+}
+
+module.exports = {
+  calculate,
+  supportedOperators,
+  modulo,
+  power,
+  squareRoot,
+};
